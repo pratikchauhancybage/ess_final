@@ -1,0 +1,21 @@
+<% header_text = params[:action] == "new" ? "New Employment" : "Update Employment"%>
+<% employee_id = params[:action] == "new" ? params[:emp_id] : employment.employee.id %>
+<h3 class="text-xl font-bold dark:text-white px-6"><%= header_text%></h3>
+<%= form_with(model: employment, data: { turbo: false }, class: "table min-w-full") do |form| %>
+  <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+    <%= form.hidden_field :employee_id, value: employee_id %>
+    <div>
+      <label class="font-medium text-gray-800">Start Date</label>
+      <%= form.date_field :start_date, class: "w-full outline-none rounded bg-gray-100 p-2 mt-2 mb-3" %>
+    </div>
+    <div>
+      <label class="font-medium text-gray-800">End Date</label>
+      <%= form.date_field :end_date, class: "w-full outline-none rounded bg-gray-100 p-2 mt-2 mb-3" %>
+    </div>
+  </div>
+  <div class="bg-gray-200 px-4 py-3 text-right">
+    <% e_id = employment.present? ? employment.employee.id : "" %>
+    <%= link_to "Cancel", employments_path(emp_id: e_id), class: "w-1/3 text-center rounded-lg py-2 px-3 bg-gray-600 text-white inline-block font-medium cursor-pointer hover:bg-gray-700 ", data: { turbo: false } %>
+    <%= form.submit class: "rounded-lg text-center py-2 px-3 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
