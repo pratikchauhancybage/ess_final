@@ -2,6 +2,7 @@ class EmployeesController < ApplicationController
   include ActionView::RecordIdentifier
   before_action :set_employee, only: %i[ show edit update destroy ]
 
+
   def index
     @employees = Employee.all
   end
