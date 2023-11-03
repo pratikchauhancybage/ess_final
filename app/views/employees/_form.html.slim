@@ -34,19 +34,21 @@ h3.text-xl.font-bold.dark:text-white.px-6
     = link_to "Cancel", employees_path, class: "w-1/3 text-center rounded-lg py-2 px-3 bg-gray-600 text-white inline-block font-medium cursor-pointer hover:bg-gray-700 ", data: { turbo: false }
     = form.submit class: "rounded-lg w-1/3 text-center py-2 px-3 bg-blue-600 text-white inline-block font-medium cursor-pointer"
 
+
 javascript:
-   const phoneInput = document.getElementById('employee_phone');
-   
-   phoneInput.addEventListener('keypress', formatPhoneNumber);
-   phoneInput.addEventListener('change', formatPhoneNumber);
-   
-   function formatPhoneNumber() {
-     let value = phoneInput.value.replace(/\D/g, ''); // Remove non-digit characters
-   
-     if (value.length > 10) {
-       value = value.slice(0, 10); 
+   document.addEventListener('DOMContentLoaded', function() {
+     const phoneInput = document.getElementById('employee_phone');
+     
+     phoneInput.addEventListener('input', formatPhoneNumber);
+     
+     function formatPhoneNumber() {
+       let value = phoneInput.value.replace(/\D/g, ''); // Remove non-digit characters
+     
+       if (value.length > 10) {
+         value = value.slice(0, 10); 
+       }
+     
+       const formattedValue = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+       phoneInput.value = formattedValue;
      }
-   
-     const formattedValue = value.replace(/(\d{3})(\d{3})?(\d{4})?, '$1-$2-$3');
-     phoneInput.value = formattedValue;
-   }
+   });
