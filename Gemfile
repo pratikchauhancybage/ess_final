@@ -84,4 +84,9 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "faker", "~> 2.20"
 
 gem 'foreman'
-
+gem 'haml'
+gem 'hpricot'
+gem 'ruby_parser'
+gem 'html2haml'
+gem 'slim'
+gem 'slim-rails'

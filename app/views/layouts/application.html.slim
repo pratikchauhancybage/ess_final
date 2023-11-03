@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title
+      | EssFinal
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+  = render 'layouts/header'
+  body
+    .container.mt-6.mx-auto
+      = turbo_frame_tag "new-employee-form"
+      = yield

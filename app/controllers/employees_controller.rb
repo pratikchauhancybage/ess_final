@@ -20,6 +20,7 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       if @employee.save
         @employment = Employment.new(employee_id: @employee.id)
+        format.turbo_stream
         format.html { redirect_to new_employment_path(emp_id: @employee.id) }
       else
         format.html { render :new, status: :unprocessable_entity }
